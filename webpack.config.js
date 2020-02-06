@@ -1,6 +1,6 @@
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
-const vueLoaderPlugin = require('vue-loader/lib/plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
   mode: 'development',  //使用场景，还可设置为production、none
@@ -16,7 +16,7 @@ module.exports = {
       filename: 'index.html'
     }),
     //通过babel-plugin-component达到按需引入mint-ui组件的效果
-    new vueLoaderPlugin()
+    new VueLoaderPlugin()
   ],
   module: {
     rules: [
