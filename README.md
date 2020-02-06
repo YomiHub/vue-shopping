@@ -34,3 +34,7 @@
   - 在 src 目录即 main.js 同目录下新建 .gitignore 文件，用于放置忽略上传的文件，例如：node_modules、.idea、.vscode、.git
   - 在 src 目录下放开源协议（可以直接使用 mint-ui 下的 MIT 协议），协议的区别参考[链接](https://www.zhihu.com/question/19568896/answer/507675584)
   - 创建 REDEME.md 文件，编辑项目相关介绍
+  - 运行`git init`初始化本地仓库，并将更改 add 和 commit 到本地仓库
+  - `git remote add origin https://github.com/YomiHub/vue-shopping.git`添加远程仓库
+  - `git push -u origin master`将本地仓库的内容推送到远程仓库
+- 后续项目提交更改参考[链接](https://github.com/YomiHub/learning-notes/blob/master/%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/Git%E6%8F%90%E4%BA%A4%E4%BB%A3%E7%A0%81%E5%88%B0%E8%BF%9C%E7%A8%8B%E5%BA%93.md)，若使用 vscode 编辑器可以直接可视化提交，先 commit 然后在更多中选择 push
