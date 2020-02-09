@@ -3,14 +3,17 @@
   "version": "1.0.0",
   "description": "基于vue的项目商城项目",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YomiHub/vue-shopping"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --open --port 3001 --contentBase src --hot"
   },
   "keywords": [],
   "author": "YoMi",
-  "private": true,
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.8.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
@@ -38,6 +41,7 @@
     "@babel/runtime": "^7.8.3",
     "mint-ui": "^2.2.13",
     "vue": "^2.6.11",
+    "vue-resource": "^1.5.1",
     "vue-router": "^3.1.5"
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <!-- header部分 -->
-    <mt-header fixed title="班桥 · 高效建设特色班级"></mt-header>
+    <mt-header fixed title="速购 · 快速找到心仪商品"></mt-header>
 
     <!-- content部分 -->
     <router-view>app.vue模板</router-view>
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 
 <style lang="scss" scoped>
