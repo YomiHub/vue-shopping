@@ -4,7 +4,9 @@
     <mt-header fixed title="速购 · 快速找到心仪商品"></mt-header>
 
     <!-- content部分 -->
-    <router-view>app.vue模板</router-view>
+    <transition>
+      <router-view>app.vue模板</router-view>
+    </transition>
 
     <!-- tab部分 -->
     <nav class="mui-bar mui-bar-tab">
@@ -38,5 +40,22 @@ export default {}
 <style lang="scss" scoped>
 .app-container {
   padding-top: 40px;
+  overflow: hidden;
+}
+
+.v-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.v-leave-to {
+  opacity: 0;
+  transform: translateX(-100%);
+  position: absolute;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.3s ease;
 }
 </style>
