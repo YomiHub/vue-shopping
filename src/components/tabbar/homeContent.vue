@@ -3,10 +3,47 @@
     <mt-swipe :auto="4000">
       <mt-swipe-item v-for="item in swipeList" :key="item.id">
         <!-- 在src中以变量开始会自动拼接本服务的http地址 -->
-        <img :src="'' + baseUrl + '' + item.imageurl" alt="" />
+        <img :src="'' + baseUrl + '' + item.imageurl" alt="" srcset="" />
       </mt-swipe-item>
     </mt-swipe>
-    homeContent
+    <ul class="mui-table-view mui-grid-view mui-grid-9">
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+        <a href="#">
+          <img src="/images/menuicon/menu1.png" alt="" srcset="" />
+          <div class="mui-media-body">新闻资讯</div>
+        </a>
+      </li>
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+        <a href="#">
+          <img src="/images/menuicon/menu2.png" alt="" srcset="" />
+          <div class="mui-media-body">图片分享</div>
+        </a>
+      </li>
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+        <a href="#">
+          <img src="/images/menuicon/menu3.png" alt="" srcset="" />
+          <div class="mui-media-body">商品购买</div>
+        </a>
+      </li>
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+        <a href="#">
+          <img src="/images/menuicon/menu4.png" alt="" srcset="" />
+          <div class="mui-media-body">留言反馈</div>
+        </a>
+      </li>
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+        <a href="#">
+          <img src="/images/menuicon/menu5.png" alt="" srcset="" />
+          <div class="mui-media-body">视频专区</div>
+        </a>
+      </li>
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+        <a href="#">
+          <img src="/images/menuicon/menu6.png" alt="" srcset="" />
+          <div class="mui-media-body">联系我们</div>
+        </a>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -62,5 +99,19 @@ export default {
       height: 100%;
     }
   }
+}
+
+.mui-grid-view.mui-grid-9 {
+  background-color: #fff;
+  border: 0;
+  img {
+    width: 60px;
+  }
+  mui-media-body {
+    font-size: 14px;
+  }
+}
+.mui-grid-view.mui-grid-9 .mui-table-view-cell {
+  border: none;
 }
 </style>
