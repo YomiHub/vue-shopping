@@ -1,66 +1,67 @@
 <template>
-  <div>
+  <div class="news-container">
     <ul class="mui-table-view">
-      <li class="mui-table-view-cell mui-media">
-        <a href="javascript:;">
-          <img
-            class="mui-media-object mui-pull-left"
-            src="http://localhost:3000/www/newsimage/cat.jpg"
-          />
+      <li
+        class="mui-table-view-cell mui-media"
+        v-for="item in newsList"
+        :key="item.id"
+      >
+        <router-link :to="'/home/news/newsDetail/' + item.id">
+          <img class="mui-media-object mui-pull-left" :src="item.image_url" />
           <div class="mui-media-body">
-            <h1>幸福</h1>
+            <h1>{{ item.title }}</h1>
             <p class="mui-ellipsis">
-              能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？
+              {{ item.abstract }}
             </p>
             <p class="explain">
-              <span>发表时间：2020-2-10 23:00:11</span>
-              <span>点击：1次</span>
+              <span
+                >发表时间：{{ item.add_time | dateFormat('YYYY-MM-DD') }}</span
+              >
+              <span>点击：{{ item.click_times }}次</span>
             </p>
           </div>
-        </a>
-      </li>
-      <li class="mui-table-view-cell mui-media">
-        <a href="javascript:;">
-          <img
-            class="mui-media-object mui-pull-left"
-            src="http://localhost:3000/www/newsimage/garlic.jpg"
-          />
-          <div class="mui-media-body">
-            <h1>大蒜</h1>
-            <p class="mui-ellipsis">
-              这是一个让我又爱又恨的食物，喜欢拿它当调味料，但是很不喜欢直接啃它
-            </p>
-            <p class="explain">
-              <span>发表时间：2020-2-10 23:00:11</span>
-              <span>点击：0次</span>
-            </p>
-          </div>
-        </a>
-      </li>
-      <li class="mui-table-view-cell mui-media">
-        <a href="javascript:;">
-          <img
-            class="mui-media-object mui-pull-left"
-            src="http://localhost:3000/www/newsimage/hamburger.jpg"
-          />
-          <div class="mui-media-body">
-            <h1>汉堡</h1>
-            <p class="mui-ellipsis">
-              现在是晚上十一点，这个时候要是能吃上一个热腾腾的汉堡一定是一件很幸福的事情···
-            </p>
-            <p class="explain">
-              <span>发表时间：2020-2-10 23:00:11</span>
-              <span>点击：1次</span>
-            </p>
-          </div>
-        </a>
+        </router-link>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-export default {}
+import { Toast } from 'mint-ui'
+export default {
+  data() {
+    return {
+      newsList: []
+    }
+  },
+  created() {
+    this.getLists()
+  },
+  methods: {
+    getLists() {
+      this.$http.get('getNewsList').then(result => {
+        if (result.status === 200) {
+          console.log(result.body)
+          if (result.body.status === 0) {
+            this.newsList = result.body.message
+          } else {
+            Toast({
+              message: '数据加载失败',
+              position: 'bottom',
+              duration: 3000
+            })
+          }
+        } else {
+          Toast({
+            message: '请求失败' + result,
+            position: 'bottom',
+            duration: 3000
+          })
+        }
+      })
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

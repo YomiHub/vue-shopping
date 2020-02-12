@@ -62,7 +62,7 @@ export default {
   methods: {
     getSwipe() {
       //获取轮播图
-      this.$http.get(this.baseUrl + '/getSwipe').then(result => {
+      this.$http.get('getSwipe').then(result => {
         if (result.status === 200) {
           console.log(result.body)
           if (result.body.status === 0) {
@@ -74,6 +74,12 @@ export default {
               duration: 3000
             })
           }
+        } else {
+          Toast({
+            message: '请求失败' + result,
+            position: 'bottom',
+            duration: 3000
+          })
         }
       })
     }

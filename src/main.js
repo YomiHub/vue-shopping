@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
+import moment from 'moment' //时间格式化处理
 
 //导入MUI的样式文件
 import './lib/mui/css/mui.min.css'
@@ -17,6 +18,10 @@ Vue.component(SwipeItem.name, SwipeItem);
 import router from './router.js'
 import app from './App.vue'
 
+Vue.http.options.root = 'http://127.0.0.1:3000'
+Vue.filter('dateFormat', function (dateStr, pattern = "YYYY-MM-DD HH:mm:ss") {
+  return moment(dateStr).format(pattern)
+})
 var vm = new Vue({
   el: '#app',
   render: c => c(app),

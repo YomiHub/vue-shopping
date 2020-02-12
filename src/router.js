@@ -4,6 +4,7 @@ import memberContent from './components/tabbar/memberContent.vue'
 import shopcarContent from './components/tabbar/shopcarContent.vue'
 import searchContent from './components/tabbar/searchContent.vue'
 import newsList from './components/news/newsList.vue'
+import newsDetail from './components/news/newsDetail.vue'
 
 
 //创建路由对象
@@ -14,7 +15,8 @@ var router = new VueRouter({
     { path: '/member', component: memberContent },
     { path: '/shopcar', component: shopcarContent },
     { path: '/search', component: searchContent },
-    { path: '/home/news', component: newsList }
+    { path: '/home/news', component: newsList },
+    { path: '/home/news/newsDetail/:id', component: newsDetail }
   ],
   linkActiveClass: 'mui-active' //默认高亮的类 router-link-active
 })
