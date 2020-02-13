@@ -6,11 +6,13 @@
       <span>浏览{{ detail.click_times }}次</span>
     </p>
     <div class="detail-content" v-html="detail.detail"></div>
+    <comment-wrap :id="id"></comment-wrap>
   </div>
 </template>
 
 <script>
 import { Toast } from 'mint-ui'
+import comment from '../subcomponents/comment.vue'
 export default {
   data() {
     return {
@@ -46,6 +48,9 @@ export default {
           }
         })
     }
+  },
+  components: {
+    'comment-wrap': comment
   }
 }
 </script>
@@ -66,7 +71,7 @@ export default {
   }
   .detail-content {
     font-size: 14px;
-    line-height: 20px;
+    line-height: 26px;
   }
 }
 </style>
