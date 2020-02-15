@@ -10,11 +10,12 @@ import './lib/mui/css/mui.min.css'
 import './lib/mui/css/icons-extra.css'
 
 //按需引入 Mint UI
-import { Header, Swipe, SwipeItem, Button } from 'mint-ui'
+import { Header, Swipe, SwipeItem, Button, Lazyload } from 'mint-ui'
 Vue.component(Header.name, Header);
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
 Vue.component(Button.name, Button);
+Vue.use(Lazyload);
 
 import router from './router.js'
 import app from './App.vue'

@@ -1,11 +1,17 @@
 {
-  "presets": ["@babel/preset-env", "@babel/preset-react", "mobx"],
+  "presets": ["env", "stage-0"],
   "plugins": [
-    "@babel/plugin-proposal-object-rest-spread",
-    "@babel/plugin-transform-runtime",
-    ["component", {
-      "libraryName": "mint-ui",
-      "style": true
-    }]
-  ]
+    "transform-runtime",
+    [
+      "component",
+      {
+        "libraryName": "mint-ui",
+        "style": true
+      }
+    ],
+    "transform-remove-strict-mode"
+  ] /* ,
+  "ignore": [
+    "./lib/mui/js/*.js" //babel-loader编译js文件时使用了严格模式，略过某个js文件
+  ] */
 }

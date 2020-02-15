@@ -7,7 +7,10 @@
         :key="item.id"
       >
         <router-link :to="'/home/news/newsDetail/' + item.id">
-          <img class="mui-media-object mui-pull-left" :src="item.image_url" />
+          <img
+            class="mui-media-object mui-pull-left"
+            :src="'' + baseUrl + '' + item.image_url"
+          />
           <div class="mui-media-body">
             <h1>{{ item.title }}</h1>
             <p class="mui-ellipsis">
@@ -31,7 +34,8 @@ import { Toast } from 'mint-ui'
 export default {
   data() {
     return {
-      newsList: []
+      newsList: [],
+      baseUrl: 'http://127.0.0.1:3000'
     }
   },
   created() {

@@ -52,7 +52,6 @@ export default {
   },
   methods: {
     getComment() {
-      console.log(this.id)
       this.$http
         .get(
           'getNewsComment?articleid=' +
