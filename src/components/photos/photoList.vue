@@ -18,9 +18,18 @@
       </div>
     </div>
     <ul class="photo-list">
-      <li v-for="item in photoList" :key="item.id">
-        <img v-lazy="'' + baseUrl + '' + item.image_url" />
-      </li>
+      <router-link
+        v-for="item in photoList"
+        :key="item.id"
+        :to="'/home/photos/photoDetail/' + item.id"
+        tag="li"
+      >
+        <img v-lazy="'' + baseUrl + '' + item.image_url" class="photo-img" />
+        <div class="photo-info">
+          <h3 class="photo-title">{{ item.title }}</h3>
+          <p class="photo-abstract">{{ item.abstract }}</p>
+        </div>
+      </router-link>
     </ul>
   </div>
 </template>
@@ -96,14 +105,41 @@ export default {
 }
 
 .photo-list {
-  img[lazy='loading'] {
-    width: 40px;
-    height: 300px;
-    margin: auto;
-  }
-  ul,
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+  padding-bottom: 0px; //img下会有10px的margin-bottom
   li {
-    list-style: none;
+    background-color: #ccc;
+    text-align: center;
+    margin-bottom: 10px;
+    box-shadow: 0 0 9px #999;
+    position: relative;
+    .photo-img {
+      width: 100%;
+      vertical-align: middle;
+    }
+    img.photo-img[lazy='loading'] {
+      width: 40px;
+      height: 300px;
+      margin: auto;
+    }
+    .photo-info {
+      width: 100%;
+      color: #fff;
+      text-align: left;
+      position: absolute;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      max-height: 84px;
+      .photo-title {
+        font-size: 16px;
+      }
+      .photo-abstract {
+        font-size: 14px;
+        color: #fff;
+      }
+    }
   }
 }
 </style>

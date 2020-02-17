@@ -6,7 +6,7 @@
       <span>浏览{{ detail.click_times }}次</span>
     </p>
     <div class="detail-content" v-html="detail.detail"></div>
-    <comment-wrap :id="id"></comment-wrap>
+    <comment-wrap :id="id" :commentType="commentType"></comment-wrap>
   </div>
 </template>
 
@@ -17,7 +17,8 @@ export default {
   data() {
     return {
       id: this.$route.params.id,
-      detail: {}
+      detail: {},
+      commentType: 0
     }
   },
   created() {

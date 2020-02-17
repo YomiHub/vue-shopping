@@ -6,11 +6,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>vue商城项目</title>
+  <style>
+    /* vue-preview组件的样式要在全局设置才有效 */
+    /*.photo-compress .preview .my-gallery {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .photo-compress .preview figure {
+      margin: 1.5%;
+    }
+
+    .photo-compress .preview figure img {
+      width: 100px;
+      max-height: 100px;
+    } */
+
+    .my-gallery {
+      *zoom: 1;
+    }
+
+    .my-gallery::after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    /*图片预览 缩略图*/
+    .preview figure {
+      float: left;
+      width: 30%;
+      /*height: calc(30vw - 0px); */
+      margin: 1.5%;
+      max-height: 100px;
+      overflow: hidden;
+
+    }
+
+    .preview figure img {
+      width: 100%;
+      box-shadow: 0 0 4px #999;
+    }
+  </style>
 </head>
 
 <body style="background-color: #fff">
   <div id="app">
-    这是index.html页面
   </div>
 </body>
 

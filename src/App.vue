@@ -42,7 +42,9 @@ export default {}
   padding-top: 40px;
   padding-bottom: 50px;
   overflow: hidden;
-
+  .mint-header {
+    z-index: 99; //避免“图片分享”的滑动选项卡将其覆盖
+  }
   /* 使用新的类名，解决使用mui框架js组件后tabbar切换失效的问题 */
   .mui-bar-tab .mui-tab-item-change.mui-active {
     color: #007aff;

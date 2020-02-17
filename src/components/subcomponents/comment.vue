@@ -44,7 +44,9 @@ export default {
       pageindex: 1,
       pagesize: 2,
       comments: [],
-      msg: '' //双向绑定输入的评论内容
+      msg: '', //双向绑定输入的评论内容
+      getCommentUrl: 'getNewsComment', //用于存储获取评论的请求地址，区分资讯详情和图片详情
+      postCommentUrl: 'addComment' //用于存储发表评论的请求地址
     }
   },
   created() {
@@ -52,9 +54,14 @@ export default {
   },
   methods: {
     getComment() {
+      if (this.commentType == 1) {
+        this.getCommentUrl = 'getPhotoComment'
+        console.log(this.getCommentUrl + 'commentType')
+      }
       this.$http
         .get(
-          'getNewsComment?articleid=' +
+          this.getCommentUrl +
+            '?articleid=' +
             this.id +
             '&pageindex=' +
             this.pageindex +
@@ -93,10 +100,13 @@ export default {
       this.getComment()
     },
     sendComment() {
+      if (this.commentType == 1) {
+        this.postCommentUrl = 'addPhotoComment'
+      }
       //article_id可以通过路由this.$route.params.id获取或者通过父组件传递的Id获取
       let time = new Date()
       this.$http
-        .post('addComment', {
+        .post(this.postCommentUrl, {
           article_id: this.id,
           add_time: time.toUTCString(),
           username: 'hym',
@@ -125,7 +135,7 @@ export default {
         })
     }
   },
-  props: ['id']
+  props: ['id', 'commentType']
 }
 </script>
 
