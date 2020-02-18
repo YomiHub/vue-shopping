@@ -56,7 +56,6 @@ export default {
     getComment() {
       if (this.commentType == 1) {
         this.getCommentUrl = 'getPhotoComment'
-        console.log(this.getCommentUrl + 'commentType')
       }
       this.$http
         .get(

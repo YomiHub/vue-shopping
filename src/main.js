@@ -36,6 +36,9 @@ Vue.use(VuePreview)
   tapToToggleControls: false
 }) */
 
+import globalval from './globalvalue.js'
+Vue.prototype.GLOBALVAL = globalval
+
 import router from './router.js'
 import app from './App.vue'
 

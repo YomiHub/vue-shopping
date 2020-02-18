@@ -10,7 +10,7 @@
             :class="['mui-control-item', item.id == 0 ? 'mui-active' : '']"
             v-for="item in categoryList"
             :key="item.id"
-            @click="getPhotoList(item.id)"
+            @tap="getPhotoList(item.id)"
           >
             {{ item.category_name }}
           </a>
