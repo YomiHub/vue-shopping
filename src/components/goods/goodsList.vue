@@ -1,6 +1,11 @@
 <template>
   <div class="goods-list">
-    <div class="goods-item" v-for="item in goodsList" :key="item.id">
+    <div
+      class="goods-item"
+      v-for="item in goodsList"
+      :key="item.id"
+      @click="toGoodsDetail(item.id)"
+    >
       <div class="goods-img">
         <img :src="GLOBALVAL.baseUrl + '' + item.image_url" alt="" />
       </div>
@@ -74,6 +79,11 @@ export default {
     getMore() {
       this.pageindex++
       this.getGoodsList()
+    },
+    toGoodsDetail(id) {
+      //this.$router.push('/home/goods/goodsDetail/' + id)
+      //this.$router.push({ path: '/home/goods/goodsDetail/' + id })
+      this.$router.push({ name: 'goodsDetail', params: { id } }) //使用该方式需要在router.js配置中添加name属性
     }
   }
 }

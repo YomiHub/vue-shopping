@@ -22,6 +22,7 @@ import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 Vue.use(MintUI);
 
+import mui from './lib/mui/js/mui.min.js'
 //缩略图插件
 import VuePreview from 'vue-preview'
 Vue.use(VuePreview)

@@ -1,11 +1,6 @@
 <template>
   <div>
-    <mt-swipe :auto="4000">
-      <mt-swipe-item v-for="item in swipeList" :key="item.id">
-        <!-- 在src中以变量开始会自动拼接本服务的http地址 -->
-        <img :src="'' + baseUrl + '' + item.imageurl" alt="" srcset="" />
-      </mt-swipe-item>
-    </mt-swipe>
+    <swipe :swipeList="swipeList" :isFull="true"></swipe>
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <router-link to="/home/news">
@@ -49,6 +44,7 @@
 
 <script>
 import { Toast } from 'mint-ui'
+import swipe from '../subcomponents/swipe.vue'
 export default {
   data() {
     return {
@@ -83,30 +79,14 @@ export default {
         }
       })
     }
+  },
+  components: {
+    swipe
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.mint-swipe {
-  height: 200px;
-  .mint-swipe-item {
-    &:nth-child(1) {
-      background-color: skyblue;
-    }
-    &:nth-child(2) {
-      background-color: green;
-    }
-    &:nth-child(3) {
-      background-color: red;
-    }
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-}
-
 .mui-grid-view.mui-grid-9 {
   background-color: #fff;
   border: 0;
