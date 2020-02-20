@@ -8,6 +8,7 @@ import moment from 'moment' //时间格式化处理
 //导入MUI的样式文件
 import './lib/mui/css/mui.min.css'
 import './lib/mui/css/icons-extra.css'
+import mui from './lib/mui/js/mui.min.js'
 
 /* //按需引入 Mint UI
 import { Header, Swipe, SwipeItem, Button, Lazyload } from 'mint-ui'
@@ -20,9 +21,10 @@ Vue.use(Lazyload); */
 //使用图片懒加载时 ，用到懒加载图标，需要全局引入
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
+
 Vue.use(MintUI);
 
-import mui from './lib/mui/js/mui.min.js'
+
 //缩略图插件
 import VuePreview from 'vue-preview'
 Vue.use(VuePreview)

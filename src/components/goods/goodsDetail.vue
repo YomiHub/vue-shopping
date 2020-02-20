@@ -1,5 +1,13 @@
 <template>
   <div class="goods-detail">
+    <transition
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @after-enter="afterEnter"
+    >
+      <div class="ball" v-show="ballShow" ref="ballposition"></div>
+    </transition>
+
     <div class="mui-card">
       <div class="mui-card-content">
         <div class="mui-card-content-inner">
@@ -19,24 +27,16 @@
           </p>
           <div>
             购买数量：
-            <div class="mui-numbox" data-numbox-min="1" data-numbox-max="9">
-              <button class="mui-btn mui-btn-numbox-minus" type="button">
-                -
-              </button>
-              <input
-                id="test"
-                class="mui-input-numbox"
-                type="number"
-                value="5"
-              />
-              <button class="mui-btn mui-btn-numbox-plus" type="button">
-                +
-              </button>
-            </div>
+            <num-box
+              @getcount="getSelectNum"
+              :max="detailInfo.stock_quantity"
+            ></num-box>
           </div>
           <div class="operate-btn">
             <mt-button type="primary" size="small">立即购买</mt-button>
-            <mt-button type="danger" size="small">加入购物车</mt-button>
+            <mt-button type="danger" size="small" @click="addShopCar"
+              >加入购物车</mt-button
+            >
           </div>
         </div>
       </div>
@@ -52,8 +52,22 @@
         </div>
       </div>
       <div class="mui-card-footer">
-        <mt-button type="primary" size="large" plain>图文介绍</mt-button>
-        <mt-button type="danger" size="large" plain>商品评论</mt-button>
+        <mt-button
+          type="primary"
+          size="large"
+          plain
+          @click="toInfo(detailInfo.id)"
+        >
+          图文介绍
+        </mt-button>
+        <mt-button
+          type="danger"
+          size="large"
+          plain
+          @click="toComment(detailInfo.id)"
+        >
+          商品评论
+        </mt-button>
       </div>
     </div>
   </div>
@@ -61,12 +75,15 @@
 <script>
 import { Toast } from 'mint-ui'
 import swipe from '../subcomponents/swipe.vue'
+import numBox from '../subcomponents/numberBox.vue'
 export default {
   data() {
     return {
       goodsId: this.$route.params.id,
       swipeList: [],
-      detailInfo: {}
+      detailInfo: {},
+      ballShow: false, //控制添加购物车时小球的显示隐藏
+      selectCount: 1 //默认选中商品为1件
     }
   },
   created() {
@@ -108,10 +125,45 @@ export default {
           })
         }
       })
+    },
+    toInfo(id) {
+      //跳转到图文介绍
+      this.$router.push({ name: 'goodsInfo', params: { id } })
+    },
+    toComment(id) {
+      //跳转到评论详情
+      this.$router.push({ name: 'goodsComment', params: { id } })
+    },
+    addShopCar() {
+      this.ballShow = !this.ballShow
+    },
+    beforeEnter(el) {
+      el.style.transform = 'translate(0,0)'
+    },
+    enter(el, done) {
+      el.offsetWidth
+      el.style.transition = 'all 1s cubic-bezier(.73,.24,.25,1)'
+      done()
+    },
+    afterEnter(el) {
+      //通过操作dom获取到dom元素（vue是不推荐操作dom的但是这里不涉及数据双向绑定可少量使用）
+      const endPosition = document
+        .getElementById('end-point')
+        .getBoundingClientRect()
+      const beginPosition = this.$refs.ballposition.getBoundingClientRect()
+      var changeLeft = endPosition.left - beginPosition.left
+      var changeTop = endPosition.top - beginPosition.top
+      el.style.transform = `translate(${changeLeft}px, ${changeTop}px)`
+      this.ballShow = !this.ballShow
+    },
+    getSelectNum(count) {
+      //获取数字框中选择的数量
+      this.selectCount = count
     }
   },
   components: {
-    swipe
+    swipe,
+    'num-box': numBox
   }
 }
 </script>
@@ -135,6 +187,16 @@ export default {
     button {
       margin-bottom: 10px;
     }
+  }
+  .ball {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: red;
+    position: absolute;
+    z-index: 99;
+    top: 386px;
+    left: 152px;
   }
 }
 </style>

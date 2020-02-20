@@ -56,6 +56,8 @@ export default {
     getComment() {
       if (this.commentType == 1) {
         this.getCommentUrl = 'getPhotoComment'
+      } else if (this.commentType == 2) {
+        this.getCommentUrl = 'getGoodsComment'
       }
       this.$http
         .get(
@@ -101,6 +103,8 @@ export default {
     sendComment() {
       if (this.commentType == 1) {
         this.postCommentUrl = 'addPhotoComment'
+      } else if (this.commentType == 2) {
+        this.postCommentUrl = 'addGoodsComment'
       }
       //article_id可以通过路由this.$route.params.id获取或者通过父组件传递的Id获取
       let time = new Date()

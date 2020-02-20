@@ -9,6 +9,8 @@ import photoList from './components/photos/photoList.vue'
 import photoDetail from './components/photos/photoDetail.vue'
 import goodsList from './components/goods/goodsList.vue'
 import goodsDetail from './components/goods/goodsDetail.vue'
+import goodsInfo from './components/goods/goodsInfo.vue'
+import goodsComment from './components/goods/goodsComment.vue'
 
 //创建路由对象
 var router = new VueRouter({
@@ -23,7 +25,10 @@ var router = new VueRouter({
     { path: '/home/photos', component: photoList },
     { path: '/home/photos/photoDetail/:id', component: photoDetail },
     { path: '/home/goodsList', component: goodsList },
-    { path: '/home/goods/goodsDetail/:id', component: goodsDetail, name: 'goodsDetail' }
+    { path: '/home/goods/goodsDetail/:id', component: goodsDetail, name: 'goodsDetail' },
+    { path: '/home/goods/goodsInfo/:id', component: goodsInfo, name: 'goodsInfo' },
+    { path: '/home/goods/goodsComment/:id', component: goodsComment, name: 'goodsComment' }
+
   ],
   linkActiveClass: 'mui-active' //默认高亮的类 router-link-active
 })
