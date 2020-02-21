@@ -136,6 +136,15 @@ export default {
     },
     addShopCar() {
       this.ballShow = !this.ballShow
+      //拼接出商品对象，保存到store中的goodsCar中
+      var goodsInfo = {
+        goodsId: this.goodsId,
+        count: this.selectCount,
+        price: this.detailInfo.sell_price,
+        selected: true
+      }
+
+      this.$store.commit('addToCar', goodsInfo)
     },
     beforeEnter(el) {
       el.style.transform = 'translate(0,0)'

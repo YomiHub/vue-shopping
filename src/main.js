@@ -1,4 +1,51 @@
 import Vue from 'vue'
+import Vuex from 'vuex'
+Vue.use(Vuex)
+
+//从本地存储获取购物车数据，需要考虑为空的情况
+var goodsCar = JSON.parse(localStorage.getItem('goodsCar') || '[]');
+var store = new Vuex.Store({
+  state: {
+    //可以通过this.$store.state.变量名访问
+    goodsCar: goodsCar
+  },
+  mutations: {
+    //通过this.$store.commit('方法名',传递的参数)
+    addToCar (state, goodsInfo) {
+      //假设商品不在购物车中
+      var ifInCar = false;
+      console.log(goodsInfo)
+      state.goodsCar.some(item => {
+        if (item.goodsId == goodsInfo.goodsId) {
+          ifInCar = true;
+          //改变数量
+          item.count += parseInt(goodsInfo.count)
+          return true;
+        }
+      })
+      //如果循环完毕还是false，则表示购物车中没有该商品
+      if (!ifInCar) {
+        state.goodsCar.push(goodsInfo)
+      }
+      //将购物车数据存储到本地中
+      localStorage.setItem('goodsCar', JSON.stringify(state.goodsCar))
+    }
+
+  },
+  getters: {
+    //通过this.$store.getters.方法名访问处理后的数据
+    getSelected (state) {
+      var total = 0;
+      state.goodsCar.forEach(item => {
+        if (item.selected) {
+          total += item.count
+        }
+      })
+      return total
+    }
+  }
+})
+
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 import VueResource from 'vue-resource'
@@ -54,5 +101,6 @@ Vue.filter('dateFormat', function (dateStr, pattern = "YYYY-MM-DD HH:mm:ss") {
 var vm = new Vue({
   el: '#app',
   render: c => c(app),
-  router  //挂载路由对象
+  router,  //挂载路由对象
+  store
 })
