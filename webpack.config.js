@@ -3,11 +3,11 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
-  mode: 'development',  //使用场景，除了development还可设置为production、none
+  mode: 'production',  //使用场景，除了development还可设置为production、none
   entry: path.join(__dirname, './src/main.js'), //配置打包入口文件以及输出文件名称
   output: {
     path: path.join(__dirname, './dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   plugins: [
     //自动在内存生成对应html
@@ -22,7 +22,15 @@ module.exports = {
     rules: [
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
       { test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
-      { test: /\.(jpg|jpeg|gif|png|bmp)$/, use: 'url-loader?limit=102400&name=[hash]-[name]' },
+      {
+        test: /\.(jpg|jpeg|gif|png|bmp)$/, use: [{
+          loader: 'url-loader', options: {
+            name: '[hash]-[name]',
+            publicPath: '../dist/',//src使用时会拼接该虚拟目录
+            //outputPath: 'images/'  //将图片打包到dist文件夹下的images目录中
+          }
+        }]
+      },//?limit=102400&name=[hash]-[name]
       { test: /\.(ttf|eot|svg|woff|woff2)$/, use: 'url-loader' },
       { test: /\.js$/, use: 'babel-loader', exclude: path.join(__dirname, './node_modules') },  //不转换node_modules中的js文件
       { test: /\.vue$/, use: 'vue-loader' }

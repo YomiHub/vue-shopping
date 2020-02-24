@@ -1,7 +1,11 @@
 <template>
   <div class="app-container">
     <!-- header部分 -->
-    <mt-header fixed title="速购 · 快速找到心仪商品"></mt-header>
+    <mt-header fixed title="速购 · 快速找到心仪商品">
+      <span slot="left" @click="goBack" v-show="backShow">
+        <mt-button icon="back">返回</mt-button>
+      </span>
+    </mt-header>
 
     <!-- content部分 -->
     <transition>
@@ -36,7 +40,30 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      backShow: false
+    }
+  },
+  created() {
+    this.backShow = this.$route.path === '/home' ? false : true
+  },
+  methods: {
+    goBack() {
+      this.$router.go(-1)
+    }
+  },
+  watch: {
+    '$route.path': function(newVal) {
+      if (newVal === '/home') {
+        this.backShow = false
+      } else {
+        this.backShow = true
+      }
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
