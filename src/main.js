@@ -14,7 +14,7 @@ var store = new Vuex.Store({
     addToCar (state, goodsInfo) {
       //假设商品不在购物车中
       var ifInCar = false;
-      console.log(goodsInfo)
+      // console.log(goodsInfo)
       state.goodsCar.some(item => {
         if (item.goodsId == goodsInfo.goodsId) {
           ifInCar = true;
@@ -29,8 +29,35 @@ var store = new Vuex.Store({
       }
       //将购物车数据存储到本地中
       localStorage.setItem('goodsCar', JSON.stringify(state.goodsCar))
+    },
+    updateCar (state, goodsInfo) {
+      //更新购物车中的数据并重新保存到本地
+      state.goodsCar.some(item => {
+        if (item.goodsId == goodsInfo.goodsId) {
+          item.count = goodsInfo.count;
+          localStorage.setItem('goodsCar', JSON.stringify(state.goodsCar))
+          return true;
+        }
+      })
+    },
+    removeCarGoods (state, id) {
+      state.goodsCar.some((item, i) => {
+        if (item.goodsId == id) {
+          state.goodsCar.splice(i, 1);
+          localStorage.setItem('goodsCar', JSON.stringify(state.goodsCar))
+          return true;
+        }
+      })
+    },
+    changeCarSelected (state, info) {
+      state.goodsCar.some(item => {
+        if (item.goodsId == info.id) {
+          item.selected = info.selected;
+          localStorage.setItem('goodsCar', JSON.stringify(state.goodsCar))
+          return true;
+        }
+      })
     }
-
   },
   getters: {
     //通过this.$store.getters.方法名访问处理后的数据
@@ -42,6 +69,34 @@ var store = new Vuex.Store({
         }
       })
       return total
+    },
+    getGoodsCount (state) {
+      var count = {};
+      state.goodsCar.forEach(item => {
+        count[item.goodsId] = item.count
+      })
+      return count;
+    },
+    getGoodsSelected (state) {
+      var selected = {};
+      state.goodsCar.forEach(item => {
+        selected[item.goodsId] = item.selected;
+      })
+      return selected;
+    },
+    getSelectedAmount (state) {
+      var total = {
+        count: 0,//选择的商品数
+        amount: 0//选择商品的总价
+      }
+
+      state.goodsCar.forEach(item => {
+        if (item.selected) {
+          total.count += item.count;
+          total.amount += item.price;
+        }
+      })
+      return total;
     }
   }
 })
