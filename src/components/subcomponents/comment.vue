@@ -106,6 +106,15 @@ export default {
       } else if (this.commentType == 2) {
         this.postCommentUrl = 'addGoodsComment'
       }
+
+      if (this.msg.trim().length == 0) {
+        Toast({
+          message: '评论不能为空',
+          position: 'bottom',
+          duration: 3000
+        })
+        return
+      }
       //article_id可以通过路由this.$route.params.id获取或者通过父组件传递的Id获取
       let time = new Date()
       this.$http

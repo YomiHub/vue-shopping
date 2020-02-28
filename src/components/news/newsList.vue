@@ -45,7 +45,7 @@ export default {
     getLists() {
       this.$http.get('getNewsList').then(result => {
         if (result.status === 200) {
-          console.log(result.body)
+          /* console.log(result.body) */
           if (result.body.status === 0) {
             this.newsList = result.body.message
           } else {

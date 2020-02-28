@@ -3,7 +3,7 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
-  mode: 'production',  //使用场景，除了development还可设置为production、none
+  mode: 'development',  //使用场景，除了development还可设置为production、none
   entry: path.join(__dirname, './src/main.js'), //配置打包入口文件以及输出文件名称
   output: {
     path: path.join(__dirname, './dist'),

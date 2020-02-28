@@ -121,8 +121,8 @@ Vue.component(Button.name, Button);
 Vue.use(Lazyload); */
 
 //使用图片懒加载时 ，用到懒加载图标，需要全局引入
-import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
+import MintUI from 'mint-ui'
 
 Vue.use(MintUI);
 

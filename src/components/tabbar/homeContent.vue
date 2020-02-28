@@ -15,7 +15,7 @@
         </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <router-link to="/home/goodsList">
+        <router-link to="/home/allGoods">
           <img src="images/menuicon/menu3.png" alt="" srcset="" />
           <div class="mui-media-body">商品购买</div>
         </router-link>
