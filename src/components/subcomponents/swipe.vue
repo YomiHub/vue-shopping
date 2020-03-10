@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  props: ['swipeList', 'isFull']
+  props: { swipeList: Array, isFull: Boolean }
 }
 </script>
 

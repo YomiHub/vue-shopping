@@ -33,7 +33,7 @@ export default {
       this.$router.push({ name: 'goodsDetail', params: { id } }) //使用该方式需要在router.js配置中添加name属性
     }
   },
-  props: ['goodsList', 'moreBtnShow']
+  props: { goodsList: Array }
 }
 </script>
 

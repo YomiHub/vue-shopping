@@ -30,7 +30,7 @@ export default {
       this.$emit('getcount', parseInt(this.$refs.countNum.value))
     }
   },
-  props: ['max'],
+  props: { max: Number },
   watch: {
     //监听属性
     max: function(newVal, oldVal) {

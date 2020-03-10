@@ -147,7 +147,7 @@ export default {
         })
     }
   },
-  props: ['id', 'commentType']
+  props: { id: String, commentType: Number }
 }
 </script>
 

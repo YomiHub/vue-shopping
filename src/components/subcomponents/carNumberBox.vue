@@ -33,7 +33,7 @@ export default {
       })
     }
   },
-  props: ['initcount', 'goodsId']
+  props: { initcount: Number, goodsId: Number }
 }
 </script>
 
