@@ -3,7 +3,7 @@
 #### 基于 node 开发后台接口
 
 - 创建空项目文件夹 vue-project-data，在文件夹下新建入口文件 index.js，然后初始化项目`npm init -y`
-- 安装使用到的包`npm istall express body-parser mysqljs/mysql -S`
+- 安装使用到的包`npm install express body-parser mysqljs/mysql -S`
 - 创建数据库，数据表以及字段参考 mysql.sql，关于路由 router.js 和业务逻辑部分可参考[另一篇笔记](https://github.com/YomiHub/learning-notes/blob/master/nodejs/Node%E5%9B%BE%E4%B9%A6%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E9%A1%B9%E7%9B%AE.md)
 - 监控变动文件的脚本:nodemon，为了这个命令全局可用，最好我们进行全局安装: npm install -g nodemon
   然后进入你的项目根目录: nodemon server.js 启动应用了，并且在文件有变化之后会自动重启服务。
