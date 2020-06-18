@@ -59,7 +59,6 @@ export default {
             if (results.body.status == 0) {
               this.goodsTotal = results.body.message.total
               //如果是加载更多，则在原来的数据上添加
-
               if (this.ifGetMore) {
                 this.goodsList = this.goodsList.concat(
                   results.body.message.data

@@ -20,8 +20,7 @@
       <div class="mui-card-content">
         <div class="mui-card-content-inner">
           <p>
-            市场价：￥<del>{{ detailInfo.market_price }}</del
-            >&nbsp&nbsp 销售价：<span class="red-mark"
+            市场价：￥<del>{{ detailInfo.market_price }}</del>&nbsp;&nbsp; 销售价：<span class="red-mark"
               >￥{{ detailInfo.sell_price }}</span
             >
           </p>
